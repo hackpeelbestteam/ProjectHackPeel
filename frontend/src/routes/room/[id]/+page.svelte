@@ -6,12 +6,9 @@
   const ENDPOINT = "http://localhost:3000";
   var socket = ioClient(ENDPOINT);
   //state
-  let url =
-    "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
 
   var pn = 1;
   var mn = 1;
-  let room = "room";
 
   // next slide
   function next() {
@@ -28,7 +25,6 @@
     }
   }
   onMount(() => {
-    var loadingTask = pdfjsLib.getDocument(url);
     var canvasdiv = document.getElementById("canvas");
     // init canvas
     var canvas = document.createElement("canvas");
@@ -40,15 +36,18 @@
       pn = n;
     });
 
-    // after init
-    loadingTask.promise.then(function (pdf) {
-      // todo validate page selection
-      mn = pdf.numPages;
+    socket.on("setdoc", function (n) {
+      var loadingTask = pdfjsLib.getDocument(n);
+      // after init
+      loadingTask.promise.then(function (pdf) {
+        // todo validate page selection
+        mn = pdf.numPages;
 
-      render(pdf, pn);
+        render(pdf, pn);
 
-      socket.on("to", function (n) {
-        render(pdf, n);
+        socket.on("to", function (n) {
+          render(pdf, n);
+        });
       });
     });
 
