@@ -18,7 +18,7 @@
 <body>
   <div class="section">
     <h1>Clide</h1>
-    <h4>The only place you'll ever have to vist when presenting something!</h4>
+    <h4>A unified portal to take the pain out of class presentations.</h4>
 
     <span class="homepage_seporator" />
     <span class="spacer_button_from_seporator" />
