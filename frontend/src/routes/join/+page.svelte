@@ -2,7 +2,7 @@
   import { goto } from "$app/navigation";
 
   let code = "";
-  let link = "";
+  let link = "http://5.78.50.153:3000/static/pitch.pdf";
   let name = "";
 
   function go() {
