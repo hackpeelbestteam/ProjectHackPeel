@@ -10,13 +10,14 @@
   padding-left: 1em;
   padding-right: 1em;
   padding-top: 0.5em;
-  padding-bottom: 2em;
+  padding-bottom: 0.5em;
   border-radius: 8px;
   background-color: white;
   border-width: 0;
   font-size: large;
   margin-left: 0.5em;
   margin-right: 0.5em;
+  margin-bottom: 1em;
   text-decoration: none;
   color: black;
 }
