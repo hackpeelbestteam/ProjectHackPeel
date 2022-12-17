@@ -1,4 +1,4 @@
-:root{
+:root {
   color: #d9dee1;
   font-family: Calibri, sans-serif;
 }
@@ -37,8 +37,18 @@ html {
 }
 
 .bodysection {
+  margin-top: 5em;
   height: 100%;
-  width: 70%;
+  width: 100%;
+}
+
+@media all and (min-width: 569px) {
+  /* put your css styles in here */
+  .bodysection {
+    margin-top: 5em;
+    height: 100%;
+    width: 70%;
+  }
 }
 
 .pagecount {
