@@ -10,11 +10,24 @@
 
 
   function go() {
+
     if (code !== "" && name !== "") {
       localStorage.setItem("usrName", name);
       localStorage.setItem("link", link);
+
+      if(fileinput.files.length == 0)
+      {
+        console.log("Has file!");
+      }
+      else
+      {
+        console.log("No ");
+      }
+
       goto(`/present/${code}`, { replaceState: false });
     }
+
+
   }
 
   const onFileSelected = (file) => {
