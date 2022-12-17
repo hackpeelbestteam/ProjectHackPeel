@@ -43,7 +43,7 @@ io.on("connection", async (socket) => {
     socket.emit("join", val.page);
     socket.emit("seturl", val.url);
     socket.emit("sethost", val.host);
-    socket.emit("setpresenter", val.presenter);
+    socket.emit("setp", val.presenter);
   });
 
   socket.on("go", ({ n, room }) => {

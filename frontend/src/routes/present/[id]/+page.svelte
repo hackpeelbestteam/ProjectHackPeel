@@ -11,6 +11,7 @@
   //state
 
   var pn = 1;
+  var p = "";
   var name = "name";
   var room = data.id;
 
@@ -51,6 +52,9 @@
     socket.on("goto", function (n) {
       pn = n;
     });
+    socket.on("setp", function (n) {
+      p = n;
+    });
 
     // arrowkey input
     window.addEventListener(
@@ -83,9 +87,14 @@
   });
 </script>
 
-<h1>{pn}</h1>
-<button on:click={back}>back</button>
-<button on:click={next}>next</button>
-<button on:click={finish}>done</button>
+{#if name != p}
+  {name}, {p}
+  <p>not your turn</p>
+{:else}
+  <h1>{pn}</h1>
+  <button on:click={back}>back</button>
+  <button on:click={next}>next</button>
+  <button on:click={finish}>done</button>
+{/if}
 
 <a href="/">home</a>
