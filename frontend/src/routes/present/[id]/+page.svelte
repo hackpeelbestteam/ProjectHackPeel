@@ -103,7 +103,7 @@
     <button class="clicker" on:click={next}>next</button>
   </div>
   <div class="centerchild">
-    <button on:click={finish}>done</button>
-    <a class="button" href="/">exit</a>
+    <button class="hostbutton" on:click={finish}>done</button>
+    <a class="hostbutton" href="/">exit</a>
   </div>
 {/if}
