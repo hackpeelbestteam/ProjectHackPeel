@@ -3,12 +3,15 @@
   import { onMount } from "svelte";
 
   let code = "";
+  let link =
+    "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
   let name = "";
 
   function go() {
     if (code !== "" && name !== "") {
       localStorage.setItem("usrName", name);
-      goto(`/room/${code}`, { replaceState: false });
+      localStorage.setItem("link", link);
+      goto(`/present/${code}`, { replaceState: false });
     }
   }
 </script>

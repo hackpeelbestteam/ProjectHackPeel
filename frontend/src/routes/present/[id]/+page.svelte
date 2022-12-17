@@ -41,8 +41,7 @@
   }
   onMount(() => {
     //TODO replace w/ localstorage
-    var url =
-      "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
+    var url = localStorage.getItem("link");
     // join room
     socket.emit("login", { name, room, url });
 

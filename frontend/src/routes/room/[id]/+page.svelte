@@ -13,7 +13,7 @@
   var pn = 1;
   var mn = 1;
   //TODO replace w/ localstorage
-  var name = "name";
+  var name = "";
   var p = "";
   var host = "";
   var room = data.id;
@@ -51,6 +51,7 @@
     canvas.style.display = "block";
   }
   onMount(() => {
+    name = localStorage.getItem("usrName");
     var canvasdiv = document.getElementById("canvas");
     // init canvas
     var canvas = document.createElement("canvas");
@@ -177,7 +178,9 @@
 {:else}
   <p>select a presenter</p>
   {#each users as user}
-    <button on:click={setuser(user)}>{user}</button>
+    {#if user != name}
+      <button on:click={setuser(user)}>{user}</button>
+    {/if}
   {/each}
 {/if}
 
