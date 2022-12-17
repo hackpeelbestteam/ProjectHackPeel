@@ -21,19 +21,20 @@ io.on("connection", async (socket) => {
     page: 1,
     presenter: "name",
     host: "",
-    url: "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf",
   };
 
-  socket.on("login", ({ name, room }) => {
+  socket.on("login", ({ name, room, url }) => {
     socket.join(room);
+    let user = { name: name, url: url };
+
+    if (val.users.find((e) => e.name != name)) {
+      val.users.push(user);
+    }
     if (state.get(room)) {
       val = state.get(room);
     } else {
       val.host = name;
       state.set(room, val);
-    }
-    if (!val.users.includes(name)) {
-      val.users.push(name);
     }
     console.log(name, "joined", room);
     console.log(val.page, "sent");
@@ -41,6 +42,7 @@ io.on("connection", async (socket) => {
     socket.emit("join", val.page);
     socket.emit("setdoc", val.url);
     socket.emit("sethost", val.host);
+    socket.emit("setpresenter", val.presenter);
   });
 
   socket.on("go", ({ n, room }) => {

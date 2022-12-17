@@ -13,6 +13,8 @@
   var pn = 1;
   var name = "name";
   var room = data.id;
+  let url =
+    "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
 
   // next slide
   function next() {
@@ -32,7 +34,7 @@
 
   onMount(() => {
     // join room
-    socket.emit("login", { name, room });
+    socket.emit("login", { name, room, url });
 
     // on load
     socket.on("join", function (n) {
