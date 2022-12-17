@@ -20,3 +20,12 @@
   display: flex;
   justify-content: center;
 }
+
+h1{
+  margin-bottom: 0em;
+}
+
+h4{
+  margin-top: 0em;
+  margin-bottom: 4em;
+}
