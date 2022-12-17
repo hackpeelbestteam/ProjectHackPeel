@@ -16,9 +16,6 @@
     <h1>clide.</h1>
     <h4>A unified portal to take the pain out of class presentations.</h4>
 
-    <span class="homepage_seporator" />
-    <span class="spacer_button_from_seporator" />
-
     <div class="buttons">
       <a class="button" href="/join">Join</a>
       <button class="button" on:click={go}>Host</button>
