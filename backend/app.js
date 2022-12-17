@@ -21,6 +21,7 @@ io.on("connection", async (socket) => {
     page: 1,
     presenter: "name",
     host: "",
+    url: "",
   };
 
   socket.on("login", ({ name, room, url }) => {
@@ -40,7 +41,7 @@ io.on("connection", async (socket) => {
     console.log(val.page, "sent");
     // send current pagenum
     socket.emit("join", val.page);
-    socket.emit("setdoc", val.url);
+    socket.emit("seturl", val.url);
     socket.emit("sethost", val.host);
     socket.emit("setpresenter", val.presenter);
   });
@@ -50,6 +51,13 @@ io.on("connection", async (socket) => {
     state.set(room, val);
     io.to(room).emit("goto", val.page);
     console.log(val);
+  });
+
+  socket.on("seturl", ({ url, room }) => {
+    val.url = url;
+    state.set(room, val);
+    io.to(room).emit("seturl", val.url);
+    console.log("seturl", url, val);
   });
 
   socket.on("disconnect", () => {

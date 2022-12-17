@@ -15,6 +15,7 @@
   var name = "name";
   var host = "host";
   var room = data.id;
+  var url = "";
 
   // next slide
   function next() {
@@ -54,21 +55,26 @@
       }
     });
 
-    socket.on("setdoc", function (n) {
-      var loadingTask = pdfjsLib.getDocument(n);
-      // after init
-      loadingTask.promise.then(function (pdf) {
-        // todo validate page selection
-        mn = pdf.numPages;
+    socket.on("seturl", function (n) {
+      url = n;
+      if (url != "") {
+        var loadingTask = pdfjsLib.getDocument(n);
+        // after init
+        loadingTask.promise.then(function (pdf) {
+          // todo validate page selection
+          mn = pdf.numPages;
 
-        render(pdf, pn);
+          render(pdf, pn);
 
-        socket.on("goto", function (n) {
-          console.log(n);
-          pn = n;
-          render(pdf, n);
+          socket.on("goto", function (n) {
+            console.log(n);
+            pn = n;
+            render(pdf, n);
+          });
         });
-      });
+      } else {
+        canvas.remove();
+      }
     });
 
     function render(pdf, pageNumber) {
@@ -143,12 +149,16 @@
   });
 </script>
 
+{#if url == "" || url == null}
+  <p>no page</p>
+{:else}
+  <button on:click={back}>back</button>
+  <button on:click={next}>next</button>
+{/if}
+
 <div class="parent">
   <div id="canvas" />
 </div>
-
-<button on:click={back}>back</button>
-<button on:click={next}>next</button>
 
 <style>
   canvas {
