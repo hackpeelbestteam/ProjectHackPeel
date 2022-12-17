@@ -9,6 +9,8 @@
 
   var pn = 1;
   var mn = 1;
+  var name = "name";
+  var room = "room";
 
   // next slide
   function next() {
@@ -29,6 +31,9 @@
     // init canvas
     var canvas = document.createElement("canvas");
     canvasdiv.appendChild(canvas);
+
+    // join room
+    socket.emit("login", { name, room });
 
     // on load
     socket.on("join", function (n) {
