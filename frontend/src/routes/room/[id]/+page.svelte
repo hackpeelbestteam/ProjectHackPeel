@@ -74,6 +74,7 @@
       p = n;
     });
     socket.on("updateusers", function (u) {
+      console.log("users " + u);
       users = u;
     });
 
