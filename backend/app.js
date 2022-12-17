@@ -26,19 +26,14 @@ io.on("connection", async (socket) => {
 
   socket.on("login", ({ name, room, url }) => {
     socket.join(room);
-    let user = { name: name, url: url };
-
-    val.users.push(user);
-    // if (val.users.find((e) => e.name != name)) {
-    //   val.users.push(user);
-    // }
+    let user = { name, url };
     if (state.get(room)) {
       val = state.get(room);
+      val.users.push(user);
     } else {
       val.host = name;
       state.set(room, val);
     }
-    console.log(name, "joined", room);
     var users = val.users.map(function (x) {
       return x.name;
     });
@@ -49,7 +44,6 @@ io.on("connection", async (socket) => {
     socket.emit("setp", val.presenter);
     socket.emit("updateusers", users);
     io.to(room).emit("updateusers", users);
-    state.set(room, val);
     console.log(val);
   });
 

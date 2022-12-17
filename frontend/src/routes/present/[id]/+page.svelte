@@ -12,8 +12,7 @@
 
   var pn = 1;
   var p = "";
-  //TODO replace w/ localstorage
-  var name = "name";
+  var name = "";
   var room = data.id;
 
   // next slide
@@ -42,6 +41,7 @@
   onMount(() => {
     //TODO replace w/ localstorage
     var url = localStorage.getItem("link");
+    name = localStorage.getItem("usrName");
     // join room
     socket.emit("login", { name, room, url });
 
