@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const http = require("http");
+var cors = require("cors");
 const server = http.createServer(app, {
   cors: {
     origin: "*",
@@ -12,6 +13,7 @@ const io = new Server(server, {
     origin: "*",
   },
 });
+app.use(cors());
 app.use("/static", express.static("./static"));
 
 const state = new Map();
