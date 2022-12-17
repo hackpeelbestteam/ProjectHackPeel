@@ -39,11 +39,16 @@
   }
   function finish() {
     let n = "";
+    let user = "";
     socket.emit("seturl", { n, room });
+    socket.emit("setp", { user, room });
+    p = "";
+    canvas.style.display = "none";
   }
   // prev. slide
   function setuser(user) {
     socket.emit("setp", { user, room });
+    canvas.style.display = "block";
   }
   onMount(() => {
     var canvasdiv = document.getElementById("canvas");
@@ -165,9 +170,10 @@
   });
 </script>
 
-{#if url != null || p != ""}
+{#if (url != null && url != "") || p != ""}
   <button on:click={back}>back</button>
   <button on:click={next}>next</button>
+  <button on:click={finish}>done</button>
 {:else}
   <p>select a presenter</p>
   {#each users as user}
