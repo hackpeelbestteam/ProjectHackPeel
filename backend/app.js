@@ -14,35 +14,40 @@ const io = new Server(server, {
   },
 });
 
-var cn = 1;
-var url =
-  "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
+const state = new Map();
 
 io.on("connection", async (socket) => {
+  let val = {
+    users: [],
+    page: 1,
+    url: "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf",
+  };
   socket.on("login", ({ name, room }) => {
     socket.join(room);
-    console.log("joined", name, room);
+    if (state.get(room)) {
+      val = state.get(room);
+      val.users = [];
+    } else {
+      val.users.push(name);
+      state.set(room, val);
+    }
+    console.log(name, "joined", room);
+    console.log(val);
   });
 
   // send current pagenum
-  socket.emit("join", cn);
-  socket.emit("setdoc", url);
+  socket.emit("join", val.page);
+  socket.emit("setdoc", val.url);
+
+  socket.on("go", ({ n, room }) => {
+    val.page = n;
+    state.set(room, val);
+    io.to(room).emit("goto", n);
+    console.log(val);
+  });
 
   socket.on("disconnect", () => {
     console.log("User disconnected");
-    const user = deleteUser(socket.id);
-    if (user) {
-      io.in(user.room).emit("notification", {
-        title: "Someone just left",
-        description: `${user.name} just left the room`,
-      });
-      io.in(user.room).emit("users", getUsers(user.room));
-    }
-  });
-  socket.on("go", ({ n, room }) => {
-    cn = n;
-    console.log(room, cn);
-    io.to(room).emit("goto", cn);
   });
 });
 

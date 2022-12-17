@@ -2,6 +2,9 @@
   import ioClient from "socket.io-client";
   import { onMount } from "svelte";
 
+  // params
+  export let data;
+
   // io init
   const ENDPOINT = "http://localhost:3000";
   var socket = ioClient(ENDPOINT);
@@ -10,7 +13,7 @@
   var pn = 1;
   var mn = 1;
   var name = "name";
-  var room = "room";
+  var room = data.id;
 
   // next slide
   function next() {
