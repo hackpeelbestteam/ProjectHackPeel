@@ -140,8 +140,46 @@ html {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.round-container{
+.round-container {
   border-radius: 1em;
   background-color: #3b3b3b;
-  padding:1em;
+  padding: 1em;
+}
+
+input {
+  padding: 10px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  background-color: #3b3b3b;
+  border-color: white;
+  font-size: large;
+  color: white;
+}
+
+.button {
+  background-color: #d9d9d9;
+  font-family: Calibri, sans-serif;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-radius: 8px;
+  background-color: white;
+  border-width: 0;
+  font-size: large;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 2em;
+  text-decoration: none;
+  color: black;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+a {
+  color: white;
 }
