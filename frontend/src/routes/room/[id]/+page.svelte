@@ -28,7 +28,8 @@
   function back() {
     if (pn - 1 != 0) {
       pn = pn - 1;
-      socket.emit("go", { pn, room });
+      var n = pn;
+      socket.emit("go", { n, room });
     }
   }
   onMount(() => {
@@ -52,11 +53,13 @@
       loadingTask.promise.then(function (pdf) {
         // todo validate page selection
         mn = pdf.numPages;
+        socket.emit("mn", { mn, room });
 
         render(pdf, pn);
 
         socket.on("goto", function (n) {
           console.log(n);
+          pn = n;
           render(pdf, n);
         });
       });
