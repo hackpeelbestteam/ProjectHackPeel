@@ -93,15 +93,17 @@
   <p class="center">
     name: {name}
   </p>
+  <div class="centerchild">
+    <a class="button" href="/">exit</a>
+  </div>
 {:else}
   <h1 class="pagecount">{pn}</h1>
   <div class="clickers">
     <button class="clicker" on:click={back}>back</button>
     <button class="clicker" on:click={next}>next</button>
   </div>
-  <button on:click={finish}>done</button>
+  <div class="centerchild">
+    <button on:click={finish}>done</button>
+    <a class="button" href="/">exit</a>
+  </div>
 {/if}
-
-<div class="centerchild">
-  <a class="button" href="/">home</a>
-</div>
