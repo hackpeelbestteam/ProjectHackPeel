@@ -21,7 +21,7 @@ io.on("connection", async (socket) => {
     page: 1,
     presenter: "",
     host: "",
-    url: "",
+    url: undefined,
   };
 
   socket.on("login", ({ name, room, url }) => {
@@ -49,20 +49,23 @@ io.on("connection", async (socket) => {
     socket.emit("setp", val.presenter);
     socket.emit("updateusers", users);
     io.to(room).emit("updateusers", users);
+    state.set(room, val);
+    console.log(val);
   });
 
   socket.on("go", ({ n, room }) => {
     val.page = n;
-    state.set(room, val);
     io.to(room).emit("goto", val.page);
+    state.set(room, val);
+    console.log(val);
   });
 
   socket.on("seturl", ({ url, room }) => {
     val.url = url;
-    state.set(room, val);
     io.to(room).emit("seturl", val.url);
     io.to(room).emit("goto", 1);
-    console.log("seturl", url, val);
+    state.set(room, val);
+    console.log(val);
   });
 
   socket.on("setp", ({ user, room }) => {
@@ -71,13 +74,15 @@ io.on("connection", async (socket) => {
     if (user != "" && user != null) {
       url = val.users.find((x) => x.name === user).url;
     }
+    val.url = url;
     io.to(room).emit("seturl", url);
     io.to(room).emit("setp", user);
     state.set(room, val);
+    console.log(val);
   });
 
   socket.on("disconnect", () => {
-    console.log("User disconnected");
+    console.log("disconnected");
   });
 });
 

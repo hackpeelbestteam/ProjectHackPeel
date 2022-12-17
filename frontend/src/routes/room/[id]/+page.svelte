@@ -14,6 +14,7 @@
   var mn = 1;
   //TODO replace w/ localstorage
   var name = "name";
+  var p = "";
   var host = "";
   var room = data.id;
   var url = "";
@@ -61,6 +62,10 @@
 
     socket.on("sethost", function (n) {
       host = n;
+    });
+
+    socket.on("setp", function (n) {
+      p = n;
     });
     socket.on("updateusers", function (u) {
       users = u;
@@ -160,14 +165,14 @@
   });
 </script>
 
-{#if url == "" || url == null}
+{#if url != null || p != ""}
+  <button on:click={back}>back</button>
+  <button on:click={next}>next</button>
+{:else}
   <p>select a presenter</p>
   {#each users as user}
     <button on:click={setuser(user)}>{user}</button>
   {/each}
-{:else}
-  <button on:click={back}>back</button>
-  <button on:click={next}>next</button>
 {/if}
 
 <div class="parent">
