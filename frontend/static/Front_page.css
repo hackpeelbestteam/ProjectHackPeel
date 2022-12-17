@@ -1,3 +1,53 @@
-h1 {
-      font-size: 5000px;
+.homepage_body
+{
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to bottom, 
+        #1E1E1E 0px,     /* Have one solid white area */
+        #1E1E1E 255px,   /* at the top (255px high). */
+        #1E1E1E 255px,   /* Then begin the gradient at 255px */
+        #121212 100%     /* and end it at 100% (= body's height). */
+    );  
+    height:1000px;
+    background-color: #121212;
+}
+
+.homepage_seporator
+{
+      position: absolute;
+      background-color: white;
+      height: 5px;
+      width:100%;
+      color:white;
+}
+
+.spacer_button_from_seporator
+{
+      display: inline-block;
+      height: 125px;
+      width:  100%;
+}
+
+.button_join
+{
+      margin-left: 25%;
+      background-color: #D9D9D9;
+      font-family: Calibri, sans-serif;
+      width: 10%;
+      height:15%;
+      color:#575757;
+      font-size: large;
+      
+}
+
+.button_host
+{
+      margin-right: 25%;
+      background-color: #D9D9D9;
+      font-family: Calibri, sans-serif;
+      width: 10%;
+      height:15%;
+      color:#575757;
+      font-size: large;
+      
 }
