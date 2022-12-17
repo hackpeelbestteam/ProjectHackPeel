@@ -1,11 +1,15 @@
 <script>
   import ioClient from "socket.io-client";
   import { goto } from "$app/navigation";
+  import { fade } from 'svelte/transition'
   import { onMount } from "svelte";
   import QRCode from "./qr.svelte";
 
   // params
   export let data;
+
+  //idfk
+  let heart = false;
 
   // io init
   const ENDPOINT = "http://5.78.50.153:3000";
@@ -21,6 +25,15 @@
   var room = data.id;
   var url = "";
   var users = [];
+
+  // Create & Delete heart
+  function heartMaker()
+  {
+    const div = document.createElement('div');
+
+    div.className='row';
+
+  }
 
   // next slide
   function next() {
@@ -180,6 +193,7 @@
   });
 </script>
 
+<body>
 {#if (url != null && url != "") || p != ""}
   <button class="hostbutton" on:click={back}>back</button>
   <button class="hostbutton" on:click={next}>next</button>
@@ -207,7 +221,39 @@
   <div id="canvas" />
 </div>
 
+{#if heart == false}
+<!-- {heart = false} -->
+<div id="hearter">
+  <!-- <h1 class="fade-in"></h1> -->
+  <img class="fade-in" src=../heart.png alt="heart">
+</div>
+{/if}
+
 <style>
+  .fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+  height: 3%;
+  width:  3%; 
+
+  transform:translate(0, 50px);
+  transition-duration:500ms;
+  }
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 1;
+    transform:translate(0,500px);
+	}
+	100% {
+		opacity: 0;
+        transform:translate(0,2px);
+
+	}
+}
   canvas {
     width: auto;
     height: auto;
@@ -226,3 +272,4 @@
     align-items: center;
   }
 </style>
+</body>

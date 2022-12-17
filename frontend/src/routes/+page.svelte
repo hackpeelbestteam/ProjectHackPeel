@@ -11,6 +11,10 @@
   }
 </script>
 
+<head>
+  <title>Clide - Home page</title>
+</head>
+
 <body>
   <div class="section">
     <h1>clide.</h1>
