@@ -3,8 +3,14 @@
   import { onMount } from "svelte";
 
   let code = "";
+  let name = "";
+
   function go() {
-    goto(`/room/${code}`, { replaceState: false });
+    if (code !== "" && name !== "") 
+    {
+      localStorage.setItem("usrName", name);
+      goto(`/room/${code}`, { replaceState: false });
+    }
   }
 </script>
 
@@ -13,6 +19,13 @@
 <p>
   Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 </p>
-<p>code:</p>
-<input bind:value={code} />
+
+<p style="display:inline">code:</p>
+<input style="display:inline" bind:value={code} />
+<br>
+
+<p style="display:inline">Name:</p>
+<input bind:value={name} />
+<br>
+
 <button on:click={go}>go</button>
