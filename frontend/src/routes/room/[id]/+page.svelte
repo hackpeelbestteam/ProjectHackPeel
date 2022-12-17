@@ -1,5 +1,6 @@
 <script>
   import ioClient from "socket.io-client";
+  import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import QRCode from "./qr.svelte";
 
@@ -47,7 +48,7 @@
     canvas.style.display = "none";
   }
   function exit() {
-    console.log("exit");
+    socket.emit("exit", room);
   }
   // prev. slide
   function setuser(user) {
@@ -72,6 +73,9 @@
 
     socket.on("sethost", function (n) {
       host = n;
+    });
+    socket.on("exit", function () {
+      goto(`/`, { replaceState: false });
     });
 
     socket.on("setp", function (n) {
