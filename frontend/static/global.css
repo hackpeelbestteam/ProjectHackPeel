@@ -95,3 +95,25 @@ html {
   text-decoration: none;
   color: black;
 }
+.userbutton {
+  background-color: #d9d9d9;
+  font-family: Calibri, sans-serif;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-radius: 8px;
+  max-width: 6em;
+  background-color: white;
+  border-width: 0;
+  font-size: medium;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  text-decoration: none;
+  color: black;
+}
+.seldiv {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
