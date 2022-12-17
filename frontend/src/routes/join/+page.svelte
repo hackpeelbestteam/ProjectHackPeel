@@ -1,6 +1,5 @@
 <script>
   import { goto } from "$app/navigation";
-  import { onMount } from "svelte";
 
   let code = "";
   let link =
@@ -8,26 +7,19 @@
   let name = "";
   let avatar, fileinput;
 
-
   function go() {
-
     if (code !== "" && name !== "") {
       localStorage.setItem("usrName", name);
       localStorage.setItem("link", link);
 
-      if(fileinput.files.length == 0)
-      {
+      if (fileinput.files.length == 0) {
         console.log("Has file!");
-      }
-      else
-      {
+      } else {
         console.log("No ");
       }
 
       goto(`/present/${code}`, { replaceState: false });
     }
-
-
   }
 
   const onFileSelected = (file) => {
@@ -50,8 +42,14 @@
 <input bind:value={name} />
 <br />
 
-
-<div class="chan" on:click={()=>{fileinput.click();}}>Choose Image</div>
+<div
+  class="chan"
+  on:click={() => {
+    fileinput.click();
+  }}
+>
+  Choose Image
+</div>
 <input
   style="display:none"
   type="file"

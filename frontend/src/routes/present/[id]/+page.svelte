@@ -1,6 +1,7 @@
 <script>
   import ioClient from "socket.io-client";
   import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
 
   // params
   export let data;
@@ -55,6 +56,10 @@
     });
     socket.on("setp", function (n) {
       p = n;
+    });
+
+    socket.on("exit", function () {
+      goto(`/`, { replaceState: false });
     });
 
     // arrowkey input

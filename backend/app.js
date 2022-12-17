@@ -61,6 +61,11 @@ io.on("connection", async (socket) => {
     state.set(room, val);
     console.log(val);
   });
+  socket.on("exit", (room) => {
+    io.to(room).emit("exit");
+    val = {};
+    state.delete(room);
+  });
 
   socket.on("seturl", ({ url, room }) => {
     val.url = url;
