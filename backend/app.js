@@ -19,7 +19,7 @@ io.on("connection", async (socket) => {
   let val = {
     users: [],
     page: 1,
-    presenter: "name",
+    presenter: "",
     host: "",
     url: "",
   };
@@ -28,9 +28,10 @@ io.on("connection", async (socket) => {
     socket.join(room);
     let user = { name: name, url: url };
 
-    if (val.users.find((e) => e.name != name)) {
-      val.users.push(user);
-    }
+    val.users.push(user);
+    // if (val.users.find((e) => e.name != name)) {
+    //   val.users.push(user);
+    // }
     if (state.get(room)) {
       val = state.get(room);
     } else {
@@ -38,12 +39,16 @@ io.on("connection", async (socket) => {
       state.set(room, val);
     }
     console.log(name, "joined", room);
-    console.log(val.page, "sent");
+    var users = val.users.map(function (x) {
+      return x.name;
+    });
     // send current pagenum
     socket.emit("join", val.page);
     socket.emit("seturl", val.url);
     socket.emit("sethost", val.host);
     socket.emit("setp", val.presenter);
+    socket.emit("updateusers", users);
+    io.to(room).emit("updateusers", users);
   });
 
   socket.on("go", ({ n, room }) => {
@@ -58,6 +63,17 @@ io.on("connection", async (socket) => {
     state.set(room, val);
     io.to(room).emit("seturl", val.url);
     console.log("seturl", url, val);
+  });
+
+  socket.on("setp", ({ user, room }) => {
+    val.presenter = user;
+    let url = "";
+    if (user != "" && user != null) {
+      url = val.users.find((x) => x.name === user).url;
+    }
+    io.to(room).emit("seturl", url);
+    io.to(room).emit("setp", user);
+    state.set(room, val);
   });
 
   socket.on("disconnect", () => {

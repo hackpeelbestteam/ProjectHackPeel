@@ -34,15 +34,15 @@
   // next slide
   function finish() {
     let n = "";
+    let user = "";
     socket.emit("seturl", { n, room });
+    socket.emit("setp", { user, room });
   }
   onMount(() => {
     var url =
       "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
     // join room
     socket.emit("login", { name, room, url });
-
-    socket.emit("seturl", { url, room });
 
     // on load
     socket.on("join", function (n) {
