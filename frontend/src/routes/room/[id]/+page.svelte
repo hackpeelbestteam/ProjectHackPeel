@@ -41,7 +41,10 @@
 
     document.getElementById("hearter").appendChild(div);
 
-    document.getElementById('hearter').removeChild(("row"+next_to_delete));
+    setTimeout(function(){
+      document.getElementById('hearter').removeChild(("row"+next_to_delete));
+}, 6);
+
   }
 
   function removeRow(input) {
@@ -228,7 +231,8 @@
         {/if}
       {/each}
     </div>
-  {/if}
+  </div>
+{/if}
 
   <div class="parent">
     <div id="canvas" />
@@ -283,4 +287,3 @@
       align-items: center;
     }
   </style>
-</body>
