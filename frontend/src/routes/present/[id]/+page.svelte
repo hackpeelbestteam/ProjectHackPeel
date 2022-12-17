@@ -93,6 +93,8 @@
   });
 </script>
 
+<title>clide | presenting</title>
+
 {#if name != p}
   <h4>not presenting</h4>
   <p class="center">

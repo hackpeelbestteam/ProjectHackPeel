@@ -206,27 +206,27 @@
   });
 </script>
 
-<body>
-  {#if (url != null && url != "") || p != ""}
-    <button class="hostbutton" on:click={back}>back</button>
-    <button class="hostbutton" on:click={next}>next</button>
-    <button class="hostbutton" on:click={finish}>done</button>
-  {:else}
-    <button class="hostbutton" on:click={exit}>❌ close room</button>
-    <p class="center">join with code</p>
-    <h1 class="roomcode center">{room}</h1>
-    <div class="centerchild">
-      <QRCode codeValue="http://5.78.50.153:5173/join" squareSize="150" />
-    </div>
-    <h4 class="center">select a presenter</h4>
-    <div class="centerchild">
-      <div class="seldiv">
-        {#each users as user}
-          {#if user != name}
-            <button class="userbutton" on:click={setuser(user)}>{user}</button>
-          {/if}
-        {/each}
-      </div>
+<title>clide. | lobby</title>
+
+{#if (url != null && url != "") || p != ""}
+  <button class="hostbutton" on:click={back}>back</button>
+  <button class="hostbutton" on:click={next}>next</button>
+  <button class="hostbutton" on:click={finish}>done</button>
+{:else}
+  <button class="hostbutton" on:click={exit}>❌ close room</button>
+  <p class="center">join with code</p>
+  <h1 class="roomcode center">{room}</h1>
+  <div class="centerchild">
+    <QRCode codeValue="http://5.78.50.153:5173/join" squareSize="150" />
+  </div>
+  <h4 class="center">select a presenter</h4>
+  <div class="centerchild">
+    <div class="seldiv">
+      {#each users as user}
+        {#if user != name}
+          <button class="userbutton" on:click={setuser(user)}>{user}</button>
+        {/if}
+      {/each}
     </div>
   {/if}
 
