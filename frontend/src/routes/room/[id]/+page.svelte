@@ -217,12 +217,12 @@
   <button class="hostbutton" on:click={finish}>done</button>
 {:else}
   <button class="hostbutton" on:click={exit}>❌ close room</button>
-  <p class="center">join with code</p>
+  <p class="center">Join with code</p>
   <h1 class="roomcode center">{room}</h1>
-  <div class="centerchild">
+  <div class="centerchild qr">
     <QRCode codeValue="http://5.78.50.153:5173/join" squareSize="150" />
   </div>
-  <h4 class="center">select a presenter</h4>
+  <h4 class="center">Select a presenter:</h4>
   <div class="centerchild">
     <div class="seldiv">
       {#each users as user}
