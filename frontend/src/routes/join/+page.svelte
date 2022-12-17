@@ -1,30 +1,18 @@
-<h1>join room</h1>
-
 <script>
+  import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
 
-function whenSubmitted()
-{
-  let form = document.getElementsByName('meetingJoin');
-
-   console.log(form)
-}
-
-
-const form  = document.getElementById('signup');
-
-form.addEventListener('meetingJoin', (event) => {
-    console.log("Hello world");
-});
-
+  let code = "";
+  function go() {
+    goto(`/room/${code}`, { replaceState: false });
+  }
 </script>
+
+<h1>join room</h1>
 
 <p>
   Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-
-  <form name="meetingJoin">
-    <label>Join Code:</label>
-    <input name= "code" type="text"/>
-    <input type="submit" value="Join Meeting">
-  </form>
-
-<!-- </p> -->
+</p>
+<p>code:</p>
+<input bind:value={code} />
+<button on:click={go}>go</button>
