@@ -6,11 +6,9 @@
   let code = nanoid();
 
   function go() {
-    if (code !== "" && name !== "") {
-      localStorage.setItem("usrName", name);
-      localStorage.setItem("link", "");
-      goto(`/room/${code}`, { replaceState: false });
-    }
+    localStorage.setItem("usrName", "");
+    localStorage.setItem("link", "");
+    goto(`/room/${code}`, { replaceState: false });
   }
 </script>
 
