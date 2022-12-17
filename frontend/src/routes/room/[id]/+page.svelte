@@ -46,6 +46,9 @@
     p = "";
     canvas.style.display = "none";
   }
+  function exit() {
+    console.log("exit");
+  }
   // prev. slide
   function setuser(user) {
     socket.emit("setp", { user, room });
@@ -174,10 +177,11 @@
 </script>
 
 {#if (url != null && url != "") || p != ""}
-  <button on:click={back}>back</button>
-  <button on:click={next}>next</button>
-  <button on:click={finish}>done</button>
+  <button class="hostbutton" on:click={back}>back</button>
+  <button class="hostbutton" on:click={next}>next</button>
+  <button class="hostbutton" on:click={finish}>done</button>
 {:else}
+  <button class="hostbutton" on:click={exit}>❌ close room</button>
   <p class="center">join with code</p>
   <h1 class="roomcode center">{room}</h1>
   <div class="centerchild">
