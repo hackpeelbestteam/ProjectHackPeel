@@ -2,8 +2,7 @@
   import { goto } from "$app/navigation";
 
   let code = "";
-  let link =
-    "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
+  let link = "";
   let name = "";
   let avatar, fileinput;
 
@@ -42,20 +41,8 @@
 <input bind:value={name} />
 <br />
 
-<div
-  class="chan"
-  on:click={() => {
-    fileinput.click();
-  }}
->
-  Choose Image
-</div>
-<input
-  style="display:none"
-  type="file"
-  accept=".pdf"
-  on:change={(file) => onFileSelected(file)}
-  bind:this={fileinput}
-/>
+<p style="display:inline">Presentation:</p>
+<input bind:value={link} />
+<br />
 
 <button on:click={go}>go</button>
