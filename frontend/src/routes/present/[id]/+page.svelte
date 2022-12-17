@@ -96,7 +96,7 @@
 <title>clide | presenting</title>
 
 {#if name != p}
-  <h4>not presenting</h4>
+  <h4>{p} is presenting</h4>
   <p class="center">
     name: {name}
   </p>
