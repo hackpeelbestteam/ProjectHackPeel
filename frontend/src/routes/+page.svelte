@@ -14,7 +14,7 @@
 <body>
   <div class="section">
     <h1>clide.</h1>
-    <h4>A unified portal to take the pain out of class presentations.</h4>
+    <h4>slide smoothly</h4>
 
     <div class="buttons">
       <a class="button" href="/join">Join</a>
