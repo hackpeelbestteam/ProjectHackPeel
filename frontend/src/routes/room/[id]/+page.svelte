@@ -59,6 +59,7 @@
 
         socket.on("goto", function (n) {
           console.log(n);
+          pn = n;
           render(pdf, n);
         });
       });
