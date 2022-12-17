@@ -1,6 +1,4 @@
-<head>
-  <title>clide | presenting</title>
-  <script>
+<script>
   import ioClient from "socket.io-client";
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
@@ -94,7 +92,8 @@
     );
   });
 </script>
-</head>
+
+<title>clide | presenting</title>
 
 {#if name != p}
   <h4>not presenting</h4>

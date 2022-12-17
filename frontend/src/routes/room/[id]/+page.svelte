@@ -1,6 +1,4 @@
-<head>
-  <title>clide. | lobby</title>
-  <script>
+<script>
   import ioClient from "socket.io-client";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
@@ -181,7 +179,8 @@
     );
   });
 </script>
-</head>
+
+<title>clide. | lobby</title>
 
 {#if (url != null && url != "") || p != ""}
   <button class="hostbutton" on:click={back}>back</button>

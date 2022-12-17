@@ -1,19 +1,17 @@
-<head>
-  <script>
-    import { goto } from "$app/navigation";
-    import { customAlphabet } from "nanoid";
-    let nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz", 6);
-    let code = nanoid();
-  
-    function go() {
-      localStorage.setItem("usrName", "");
-      localStorage.setItem("link", "");
-      goto(`/room/${code}`, { replaceState: false });
-    }
-  </script>
-  <title>clide. | home</title>  
-</head>
+<script>
+  import { goto } from "$app/navigation";
+  import { customAlphabet } from "nanoid";
+  let nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz", 6);
+  let code = nanoid();
 
+  function go() {
+    localStorage.setItem("usrName", "");
+    localStorage.setItem("link", "");
+    goto(`/room/${code}`, { replaceState: false });
+  }
+</script>
+
+<title>clide. | home</title>
 
 <body>
   <div class="section">
