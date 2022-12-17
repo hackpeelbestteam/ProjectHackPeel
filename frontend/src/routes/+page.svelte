@@ -11,13 +11,9 @@
   }
 </script>
 
-<head>
-  <title>Clide | Home</title>
-</head>
-
 <body>
   <div class="section">
-    <h1>Clide</h1>
+    <h1>clide.</h1>
     <h4>A unified portal to take the pain out of class presentations.</h4>
 
     <span class="homepage_seporator" />
