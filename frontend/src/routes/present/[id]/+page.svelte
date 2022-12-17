@@ -90,8 +90,8 @@
 
 {#if name != p}
   <h4>not presenting</h4>
-  <p>
-    {name}
+  <p class="center">
+    name: {name}
   </p>
 {:else}
   <h1 class="pagecount">{pn}</h1>
@@ -102,4 +102,6 @@
   <button on:click={finish}>done</button>
 {/if}
 
-<a href="/">home</a>
+<div class="centerchild">
+  <a class="button" href="/">home</a>
+</div>
