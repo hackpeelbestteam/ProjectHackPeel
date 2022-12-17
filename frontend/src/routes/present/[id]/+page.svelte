@@ -95,8 +95,10 @@
   </p>
 {:else}
   <h1 class="pagecount">{pn}</h1>
-  <button on:click={back}>back</button>
-  <button on:click={next}>next</button>
+  <div class="clickers">
+    <button class="clicker" on:click={back}>back</button>
+    <button class="clicker" on:click={next}>next</button>
+  </div>
   <button on:click={finish}>done</button>
 {/if}
 
