@@ -157,6 +157,10 @@ input {
   color: white;
 }
 
+input:focus{
+  outline: none;
+}
+
 .button {
   background-color: #d9d9d9;
   font-family: Calibri, sans-serif;
