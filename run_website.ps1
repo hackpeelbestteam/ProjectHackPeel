@@ -1,5 +1,5 @@
-cd .\frontend\
+Set-Location .\frontend\
 npm run dev
 
-cd .\backend\
+Set-Location .\backend\
 npm run dev
