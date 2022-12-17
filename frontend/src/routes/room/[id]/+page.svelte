@@ -188,11 +188,15 @@
     <QRCode codeValue="http://5.78.50.153:5173/join" squareSize="150" />
   </div>
   <h4 class="center">select a presenter</h4>
-  {#each users as user}
-    {#if user != name}
-      <button on:click={setuser(user)}>{user}</button>
-    {/if}
-  {/each}
+  <div class="centerchild">
+    <div class="seldiv">
+      {#each users as user}
+        {#if user != name}
+          <button class="userbutton" on:click={setuser(user)}>{user}</button>
+        {/if}
+      {/each}
+    </div>
+  </div>
 {/if}
 
 <div class="parent">
