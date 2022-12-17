@@ -19,7 +19,7 @@ io.on("connection", async (socket) => {
   let val = {
     users: [],
     page: 1,
-    presenter: "",
+    presenter: "name",
     host: "",
     url: "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf",
   };
@@ -40,6 +40,7 @@ io.on("connection", async (socket) => {
     // send current pagenum
     socket.emit("join", val.page);
     socket.emit("setdoc", val.url);
+    socket.emit("sethost", val.host);
   });
 
   socket.on("go", ({ n, room }) => {
