@@ -1,4 +1,4 @@
-:root{
+:root {
   color: #d9dee1;
   font-family: Calibri, sans-serif;
 }
@@ -37,6 +37,7 @@ html {
 }
 
 .bodysection {
+  margin-top: 5em;
   height: 100%;
   width: 70%;
 }
