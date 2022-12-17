@@ -1,7 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
   import { customAlphabet } from "nanoid";
-
   let nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz", 6);
   let code = nanoid();
 

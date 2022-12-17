@@ -1,6 +1,7 @@
 <script>
   import ioClient from "socket.io-client";
   import { onMount } from "svelte";
+  import QRCode from "./qr.svelte";
 
   // params
   export let data;
@@ -179,7 +180,10 @@
 {:else}
   <p class="center">join with code</p>
   <h1 class="roomcode center">{room}</h1>
-  <p>select a presenter</p>
+  <div class="centerchild">
+    <QRCode codeValue="http://5.78.50.153:5173/join" squareSize="150" />
+  </div>
+  <h4 class="center">select a presenter</h4>
   {#each users as user}
     {#if user != name}
       <button on:click={setuser(user)}>{user}</button>
