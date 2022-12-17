@@ -6,7 +6,7 @@
   export let data;
 
   // io init
-  const ENDPOINT = "http://localhost:3000";
+  const ENDPOINT = "http://5.78.50.153:3000";
   var socket = ioClient(ENDPOINT);
   //state
 
