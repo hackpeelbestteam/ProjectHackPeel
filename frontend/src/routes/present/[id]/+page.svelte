@@ -93,7 +93,7 @@
   {name}, {p}
   <p>not your turn</p>
 {:else}
-  <h1>{pn}</h1>
+  <h1 class="pagecount">{pn}</h1>
   <button on:click={back}>back</button>
   <button on:click={next}>next</button>
   <button on:click={finish}>done</button>
