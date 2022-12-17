@@ -14,7 +14,7 @@
   }
 </script>
 
-<title>clide. | join/create</title>
+<title>clide. | connect</title>
 
 <h1>clide.</h1>
 <h2 class="center">join room</h2>
