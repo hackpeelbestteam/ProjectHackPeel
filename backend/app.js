@@ -12,8 +12,7 @@ const io = new Server(server, {
     origin: "*",
   },
 });
-
-app.use(express.static("static"));
+app.use("/static", express.static("./static"));
 
 const state = new Map();
 
