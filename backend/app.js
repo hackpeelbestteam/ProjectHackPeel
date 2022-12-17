@@ -7,7 +7,6 @@ const server = http.createServer(app, {
   },
 });
 const { Server } = require("socket.io");
-const { addUser, getUser, deleteUser, getUsers } = require("./users");
 const io = new Server(server, {
   cors: {
     origin: "*",
