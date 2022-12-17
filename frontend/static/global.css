@@ -178,6 +178,12 @@ input:focus{
   text-decoration: none;
   color: black;
 }
+
+.button:hover{
+  cursor:pointer;
+  background-color: #aaaaaa;
+}
+
 .inputs {
   display: flex;
   flex-direction: column;
