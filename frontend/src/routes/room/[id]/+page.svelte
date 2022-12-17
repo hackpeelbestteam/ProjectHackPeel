@@ -16,14 +16,16 @@
   function next() {
     if (pn != mn) {
       pn = pn + 1;
-      socket.emit("to", pn);
+      console.log(pn);
+      var n = pn;
+      socket.emit("go", { n, room });
     }
   }
   // prev. slide
   function back() {
     if (pn - 1 != 0) {
       pn = pn - 1;
-      socket.emit("to", pn);
+      socket.emit("go", { pn, room });
     }
   }
   onMount(() => {
@@ -50,7 +52,8 @@
 
         render(pdf, pn);
 
-        socket.on("to", function (n) {
+        socket.on("goto", function (n) {
+          console.log(n);
           render(pdf, n);
         });
       });

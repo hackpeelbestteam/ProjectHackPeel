@@ -20,10 +20,8 @@ var url =
 
 io.on("connection", async (socket) => {
   socket.on("login", ({ name, room }) => {
-    const { user } = addUser(socket.id, name, room);
-    socket.join(user.room);
-    console.log("joined", user.name, user.room);
-    io.in(room).emit("users", getUsers(room));
+    socket.join(room);
+    console.log("joined", name, room);
   });
 
   // send current pagenum
@@ -41,9 +39,10 @@ io.on("connection", async (socket) => {
       io.in(user.room).emit("users", getUsers(user.room));
     }
   });
-  socket.on("to", (num) => {
-    cn = num;
-    io.emit("to", num);
+  socket.on("go", ({ n, room }) => {
+    cn = n;
+    console.log(room, cn);
+    io.to(room).emit("goto", cn);
   });
 });
 
