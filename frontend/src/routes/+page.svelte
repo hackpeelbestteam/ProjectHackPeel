@@ -14,6 +14,8 @@
   <span class="homepage_seporator" />
   <span class="spacer_button_from_seporator" />
 
-  <button class="button" on:click={go}>Join</button>
-  <button class="button" on:click={go}>Host</button>
+  <div class="buttons">
+    <button class="button" on:click={go}>Join</button>
+    <button class="button" on:click={go}>Host</button>
+  </div>
 </body>

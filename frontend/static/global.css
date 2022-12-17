@@ -2,6 +2,10 @@ h1 {
   text-align: center;
   font-family: Calibri, sans-serif;
   font-size: 80pt;
+  color: white;
+}
+
+p {
   color: #d9dee1;
 }
 
@@ -9,7 +13,7 @@ h4 {
   text-align: center;
   font-family: Calibri, sans-serif;
   font-size: 15pt;
-  color: #c7c7c7;
+  color: white;
 }
 
 .pagecount {
@@ -17,4 +21,7 @@ h4 {
   font-family: Calibri, sans-serif;
   font-size: 80pt;
   color: #303030;
+}
+html {
+  background-color: #1e1e1e;
 }

@@ -1,24 +1,5 @@
 .homepage_body {
-  background-position: 0px 0px;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(
-    to bottom,
-    #1e1e1e 0px,
-    /* Have one solid white area */ #1e1e1e 255px,
-    /* at the top (255px high). */ #1e1e1e 255px,
-    /* Then begin the gradient at 255px */ #121212 100%
-      /* and end it at 100% (= body's height). */
-  );
-  height: 1000px;
-  background-color: #121212;
-}
-
-.homepage_seporator {
-  position: absolute;
-  background-color: white;
-  height: 5px;
-  width: 100%;
-  color: white;
+  height: 100%;
 }
 
 .spacer_button_from_seporator {
@@ -35,6 +16,14 @@
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   border-radius: 8px;
-  color: #575757;
+  background-color: white;
+  border-width: 0;
   font-size: large;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
 }
