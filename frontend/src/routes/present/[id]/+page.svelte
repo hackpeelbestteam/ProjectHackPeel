@@ -89,8 +89,10 @@
 </script>
 
 {#if name != p}
-  {name}, {p}
-  <p>not your turn</p>
+  <h4>not presenting</h4>
+  <p>
+    {name}
+  </p>
 {:else}
   <h1 class="pagecount">{pn}</h1>
   <button on:click={back}>back</button>

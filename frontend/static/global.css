@@ -29,3 +29,22 @@ html {
 .section {
   height: 100%;
 }
+
+.pagecount {
+  text-align: center;
+  font-family: Calibri, sans-serif;
+  font-size: 80pt;
+  color: white;
+}
+
+.center {
+  text-align: center;
+}
+
+.roomcode {
+  margin-top: 0;
+  padding-top: 0;
+  font-family: Calibri, sans-serif;
+  font-size: 60pt;
+  color: white;
+}

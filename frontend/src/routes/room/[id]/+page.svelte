@@ -176,6 +176,8 @@
   <button on:click={next}>next</button>
   <button on:click={finish}>done</button>
 {:else}
+  <p class="center">join with code</p>
+  <h1 class="roomcode center">{room}</h1>
   <p>select a presenter</p>
   {#each users as user}
     {#if user != name}

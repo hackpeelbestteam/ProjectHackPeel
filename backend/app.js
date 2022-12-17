@@ -27,13 +27,21 @@ io.on("connection", async (socket) => {
   socket.on("login", ({ name, room, url }) => {
     socket.join(room);
     let user = { name, url };
+
     if (state.get(room)) {
       val = state.get(room);
-      val.users.push(user);
+      var usersl = val.users.map(function (x) {
+        return x.name;
+      });
+      if (!usersl.includes(name)) {
+        val.users.push(user);
+      }
     } else {
       val.host = name;
       state.set(room, val);
     }
+    console.log("u", users);
+
     var users = val.users.map(function (x) {
       return x.name;
     });
