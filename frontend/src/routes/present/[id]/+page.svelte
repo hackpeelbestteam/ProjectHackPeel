@@ -11,18 +11,15 @@
   //state
 
   var pn = 1;
-  var mn = 1;
   var name = "name";
   var room = data.id;
 
   // next slide
   function next() {
-    if (pn != mn) {
-      pn = pn + 1;
-      console.log(pn);
-      var n = pn;
-      socket.emit("go", { n, room });
-    }
+    pn = pn + 1;
+    console.log(pn);
+    var n = pn;
+    socket.emit("go", { n, room });
   }
   // prev. slide
   function back() {
@@ -32,10 +29,6 @@
       socket.emit("go", { n, room });
     }
   }
-
-  socket.on("mn", function (n) {
-    mn = n;
-  });
 
   onMount(() => {
     // join room

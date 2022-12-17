@@ -53,7 +53,6 @@
       loadingTask.promise.then(function (pdf) {
         // todo validate page selection
         mn = pdf.numPages;
-        socket.emit("mn", { mn, room });
 
         render(pdf, pn);
 
