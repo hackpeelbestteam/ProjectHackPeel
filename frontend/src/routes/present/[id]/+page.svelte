@@ -74,6 +74,8 @@
   });
 </script>
 
+<h1>{pn}</h1>
 <button on:click={back}>back</button>
 <button on:click={next}>next</button>
-{pn}
+
+<a href="/">home</a>
