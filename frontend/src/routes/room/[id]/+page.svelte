@@ -12,8 +12,9 @@
 
   var pn = 1;
   var mn = 1;
+  //TODO replace w/ localstorage
   var name = "name";
-  var host = "host";
+  var host = "";
   var room = data.id;
   var url = "";
   var users = [];

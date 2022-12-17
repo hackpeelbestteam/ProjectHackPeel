@@ -55,13 +55,13 @@ io.on("connection", async (socket) => {
     val.page = n;
     state.set(room, val);
     io.to(room).emit("goto", val.page);
-    console.log(val);
   });
 
   socket.on("seturl", ({ url, room }) => {
     val.url = url;
     state.set(room, val);
     io.to(room).emit("seturl", val.url);
+    io.to(room).emit("goto", 1);
     console.log("seturl", url, val);
   });
 

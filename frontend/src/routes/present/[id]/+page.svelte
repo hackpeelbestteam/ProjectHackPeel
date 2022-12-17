@@ -12,6 +12,7 @@
 
   var pn = 1;
   var p = "";
+  //TODO replace w/ localstorage
   var name = "name";
   var room = data.id;
 
@@ -39,6 +40,7 @@
     socket.emit("setp", { user, room });
   }
   onMount(() => {
+    //TODO replace w/ localstorage
     var url =
       "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
     // join room
