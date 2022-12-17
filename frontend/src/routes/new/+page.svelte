@@ -1,4 +1,23 @@
-<h1>new room</h1>
-<p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+<script>
+  import { goto } from "$app/navigation";
+  import { nanoid } from "nanoid";
+
+  let code = nanoid(6);
+  let name = "";
+
+  function go() {
+    if (code !== "" && name !== "") {
+      localStorage.setItem("usrName", name);
+      localStorage.setItem("link", "");
+      goto(`/room/${code}`, { replaceState: false });
+    }
+  }
+</script>
+
+<h1>create room</h1>
+
+<p style="display:inline">Name:</p>
+<input bind:value={name} />
+<br />
+
+<button on:click={go}>go</button>

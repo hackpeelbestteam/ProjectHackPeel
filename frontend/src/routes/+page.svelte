@@ -1,7 +1,18 @@
 <script>
-</script>
+  import { goto } from "$app/navigation";
+  import { customAlphabet } from "nanoid";
 
-<!DOCTYPE html>
+  let nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz", 6);
+  let code = nanoid();
+
+  function go() {
+    if (code !== "" && name !== "") {
+      localStorage.setItem("usrName", name);
+      localStorage.setItem("link", "");
+      goto(`/room/${code}`, { replaceState: false });
+    }
+  }
+</script>
 
 <head>
   <title>Clide | Home</title>
@@ -17,7 +28,7 @@
 
     <div class="buttons">
       <a class="button" href="/join">Join</a>
-      <a class="button" href="/host">Host</a>
+      <button class="button" on:click={go}>Host</button>
     </div>
   </div>
 </body>
