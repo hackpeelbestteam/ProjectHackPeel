@@ -14,7 +14,7 @@
   }
 </script>
 
-<h1>clyde.</h1>
+<h1>clide.</h1>
 <h2 class="center">join room</h2>
 <div class="inputs">
   <input bind:value={code} placeholder="room code" />
