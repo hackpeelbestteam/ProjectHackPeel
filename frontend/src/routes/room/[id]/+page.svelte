@@ -13,6 +13,7 @@
   var pn = 1;
   var mn = 1;
   var name = "name";
+  var host = "host";
   var room = data.id;
 
   // next slide
@@ -47,6 +48,12 @@
       pn = n;
     });
 
+    socket.on("sethost", function (n) {
+      host = n;
+      if (name != host) {
+      }
+    });
+
     socket.on("setdoc", function (n) {
       var loadingTask = pdfjsLib.getDocument(n);
       // after init
@@ -76,22 +83,21 @@
 
         var windowHeight = window.innerHeight;
         var windowWidth = window.innerWidth;
-        var viewport = page.getViewport({ scale: 1, });
-        var scaleH = (windowHeight/ viewport.height);
-        var scaleW = (windowWidth/ viewport.width);
+        var viewport = page.getViewport({ scale: 1 });
+        var scaleH = windowHeight / viewport.height;
+        var scaleW = windowWidth / viewport.width;
         var scale = Math.min(scaleH, scaleW);
 
         // console.log(temp + "Window");
         // console.log(viewport.width + "PDF");
         // console.log(scale + "Scale");
 
-
         var viewport = page.getViewport({ scale: scale });
         // var viewport = page.getViewport(canvas.width / page.getViewport(1.0).width);
         // Prepare canvas using PDF page dimensions
         var context = canvas.getContext("2d");
-        canvas.height = viewport.height ;
-        canvas.width =   viewport.width ;
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
 
         // Render PDF page into canvas context
         var renderContext = {
