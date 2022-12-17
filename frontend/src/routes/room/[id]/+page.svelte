@@ -1,11 +1,18 @@
 <script>
   import ioClient from "socket.io-client";
   import { goto } from "$app/navigation";
+  import { fade } from "svelte/transition";
   import { onMount } from "svelte";
   import QRCode from "./qr.svelte";
 
   // params
   export let data;
+
+  //idfk
+  let heart = false;
+  var heart_counter = 0;
+  var next_to_delete = 0;
+
 
   // io init
   const ENDPOINT = "http://5.78.50.153:3000";
@@ -21,6 +28,28 @@
   var room = data.id;
   var url = "";
   var users = [];
+
+
+  // Create & Delete heart
+  function heartMaker() {
+    const div = document.createElement("div");
+
+    div.className = "row" + heart_counter;
+    heart_counter++;
+
+    div.innerHTML = `<img class="fade-in" src=../heart.png alt="heart">`;
+
+    document.getElementById("hearter").appendChild(div);
+
+    setTimeout(function(){
+      document.getElementById('hearter').removeChild(("row"+next_to_delete));
+}, 6);
+
+  }
+
+  function removeRow(input) {
+  document.getElementById('content').removeChild(input.parentNode);
+}
 
   // next slide
   function next() {
@@ -205,26 +234,56 @@
   </div>
 {/if}
 
-<div class="parent">
-  <div id="canvas" />
-</div>
+  <div class="parent">
+    <div id="canvas" />
+  </div>
 
-<style>
-  canvas {
-    width: auto;
-    height: auto;
-    max-width: 90%;
-    max-height: 90%;
-  }
-  .parent {
-    z-index: -1;
-    display: flex;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
+  {#if heart == false}
+    <!-- {heart = false} -->
+    <div id="hearter">
+      <!-- <h1 class="fade-in"></h1> -->
+    </div>
+  {/if}
+
+  <style>
+    .fade-in {
+      opacity: 0;
+      animation-name: fadeInOpacity;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: 2s;
+      height: 3%;
+      width: 3%;
+
+      transform: translate(0, 50px);
+      transition-duration: 500ms;
+    }
+
+    @keyframes fadeInOpacity {
+      0% {
+        opacity: 1;
+        transform: translate(0, 500px);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(0, 2px);
+      }
+    }
+    canvas {
+      width: auto;
+      height: auto;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .parent {
+      z-index: -1;
+      display: flex;
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
