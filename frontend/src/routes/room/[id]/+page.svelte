@@ -12,9 +12,13 @@
 
   var pn = 1;
   var mn = 1;
+  //TODO replace w/ localstorage
   var name = "name";
-  var host = "host";
+  var p = "";
+  var host = "";
   var room = data.id;
+  var url = "";
+  var users = [];
 
   // next slide
   function next() {
@@ -33,6 +37,14 @@
       socket.emit("go", { n, room });
     }
   }
+  function finish() {
+    let n = "";
+    socket.emit("seturl", { n, room });
+  }
+  // prev. slide
+  function setuser(user) {
+    socket.emit("setp", { user, room });
+  }
   onMount(() => {
     var canvasdiv = document.getElementById("canvas");
     // init canvas
@@ -50,25 +62,35 @@
 
     socket.on("sethost", function (n) {
       host = n;
-      if (name != host) {
-      }
     });
 
-    socket.on("setdoc", function (n) {
-      var loadingTask = pdfjsLib.getDocument(n);
-      // after init
-      loadingTask.promise.then(function (pdf) {
-        // todo validate page selection
-        mn = pdf.numPages;
+    socket.on("setp", function (n) {
+      p = n;
+    });
+    socket.on("updateusers", function (u) {
+      users = u;
+    });
 
-        render(pdf, pn);
+    socket.on("seturl", function (n) {
+      url = n;
+      if (url == null || url == "") {
+        canvas.remove();
+      } else {
+        var loadingTask = pdfjsLib.getDocument(n);
+        // after init
+        loadingTask.promise.then(function (pdf) {
+          // todo validate page selection
+          mn = pdf.numPages;
 
-        socket.on("goto", function (n) {
-          console.log(n);
-          pn = n;
-          render(pdf, n);
+          render(pdf, pn);
+
+          socket.on("goto", function (n) {
+            console.log(n);
+            pn = n;
+            render(pdf, n);
+          });
         });
-      });
+      }
     });
 
     function render(pdf, pageNumber) {
@@ -143,12 +165,19 @@
   });
 </script>
 
+{#if url != null || p != ""}
+  <button on:click={back}>back</button>
+  <button on:click={next}>next</button>
+{:else}
+  <p>select a presenter</p>
+  {#each users as user}
+    <button on:click={setuser(user)}>{user}</button>
+  {/each}
+{/if}
+
 <div class="parent">
   <div id="canvas" />
 </div>
-
-<button on:click={back}>back</button>
-<button on:click={next}>next</button>
 
 <style>
   canvas {

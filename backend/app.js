@@ -19,39 +19,70 @@ io.on("connection", async (socket) => {
   let val = {
     users: [],
     page: 1,
-    presenter: "name",
+    presenter: "",
     host: "",
-    url: "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf",
+    url: undefined,
   };
 
-  socket.on("login", ({ name, room }) => {
+  socket.on("login", ({ name, room, url }) => {
     socket.join(room);
+    let user = { name: name, url: url };
+
+    val.users.push(user);
+    // if (val.users.find((e) => e.name != name)) {
+    //   val.users.push(user);
+    // }
     if (state.get(room)) {
       val = state.get(room);
     } else {
       val.host = name;
       state.set(room, val);
     }
-    if (!val.users.includes(name)) {
-      val.users.push(name);
-    }
     console.log(name, "joined", room);
-    console.log(val.page, "sent");
+    var users = val.users.map(function (x) {
+      return x.name;
+    });
     // send current pagenum
     socket.emit("join", val.page);
-    socket.emit("setdoc", val.url);
+    socket.emit("seturl", val.url);
     socket.emit("sethost", val.host);
+    socket.emit("setp", val.presenter);
+    socket.emit("updateusers", users);
+    io.to(room).emit("updateusers", users);
+    state.set(room, val);
+    console.log(val);
   });
 
   socket.on("go", ({ n, room }) => {
     val.page = n;
-    state.set(room, val);
     io.to(room).emit("goto", val.page);
+    state.set(room, val);
+    console.log(val);
+  });
+
+  socket.on("seturl", ({ url, room }) => {
+    val.url = url;
+    io.to(room).emit("seturl", val.url);
+    io.to(room).emit("goto", 1);
+    state.set(room, val);
+    console.log(val);
+  });
+
+  socket.on("setp", ({ user, room }) => {
+    val.presenter = user;
+    let url = "";
+    if (user != "" && user != null) {
+      url = val.users.find((x) => x.name === user).url;
+    }
+    val.url = url;
+    io.to(room).emit("seturl", url);
+    io.to(room).emit("setp", user);
+    state.set(room, val);
     console.log(val);
   });
 
   socket.on("disconnect", () => {
-    console.log("User disconnected");
+    console.log("disconnected");
   });
 });
 

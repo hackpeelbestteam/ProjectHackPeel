@@ -11,6 +11,8 @@
   //state
 
   var pn = 1;
+  var p = "";
+  //TODO replace w/ localstorage
   var name = "name";
   var room = data.id;
 
@@ -30,9 +32,19 @@
     }
   }
 
+  // next slide
+  function finish() {
+    let n = "";
+    let user = "";
+    socket.emit("seturl", { n, room });
+    socket.emit("setp", { user, room });
+  }
   onMount(() => {
+    //TODO replace w/ localstorage
+    var url =
+      "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf";
     // join room
-    socket.emit("login", { name, room });
+    socket.emit("login", { name, room, url });
 
     // on load
     socket.on("join", function (n) {
@@ -41,6 +53,9 @@
 
     socket.on("goto", function (n) {
       pn = n;
+    });
+    socket.on("setp", function (n) {
+      p = n;
     });
 
     // arrowkey input
@@ -74,8 +89,14 @@
   });
 </script>
 
-<h1>{pn}</h1>
-<button on:click={back}>back</button>
-<button on:click={next}>next</button>
+{#if name != p}
+  {name}, {p}
+  <p>not your turn</p>
+{:else}
+  <h1>{pn}</h1>
+  <button on:click={back}>back</button>
+  <button on:click={next}>next</button>
+  <button on:click={finish}>done</button>
+{/if}
 
 <a href="/">home</a>
