@@ -25,3 +25,7 @@ h4 {
 html {
   background-color: #1e1e1e;
 }
+
+.section {
+  height: 100%;
+}
