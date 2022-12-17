@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class='section'>
+  <div class='section round-container'>
     <h2>How we make life easier.</h2>
     <p>
       At school, we've all been there; presentations are happening and in between them, chaos ensues. 
