@@ -72,13 +72,24 @@
         canvas = document.createElement("canvas");
         canvasdiv.appendChild(canvas);
 
-        var scale = 1.5;
-        var viewport = page.getViewport({ scale: scale });
+        var windowHeight = window.innerHeight;
+        var windowWidth = window.innerWidth;
+        var viewport = page.getViewport({ scale: 1, });
+        var scaleH = (windowHeight/ viewport.height);
+        var scaleW = (windowWidth/ viewport.width);
+        var scale = Math.min(scaleH, scaleW);
 
+        // console.log(temp + "Window");
+        // console.log(viewport.width + "PDF");
+        // console.log(scale + "Scale");
+
+
+        var viewport = page.getViewport({ scale: scale });
+        // var viewport = page.getViewport(canvas.width / page.getViewport(1.0).width);
         // Prepare canvas using PDF page dimensions
         var context = canvas.getContext("2d");
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        canvas.height = viewport.height ;
+        canvas.width =   viewport.width ;
 
         // Render PDF page into canvas context
         var renderContext = {
