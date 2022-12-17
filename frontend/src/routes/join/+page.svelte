@@ -1,5 +1,6 @@
 <head>
   <title>clide. | join/create</title>
+</head>
   <script>
   import { goto } from "$app/navigation";
 
@@ -15,7 +16,7 @@
     }
   }
 </script>
-</head>
+
 <h1>clide.</h1>
 <h2 class="center">join room</h2>
 <div class="inputs">
